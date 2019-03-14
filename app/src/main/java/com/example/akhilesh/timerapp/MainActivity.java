@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
-                //Toast.makeText (MainActivity.this, "after stop timer", Toast.LENGTH_SHORT).show ();
+                MediaPlayer mediaPlayer= MediaPlayer.create(MainActivity.this , R.raw.abc);
+                Toast.makeText (MainActivity.this, "after stop timer", Toast.LENGTH_SHORT).show ();
                 mediaPlayer.stop ();
             }
 
