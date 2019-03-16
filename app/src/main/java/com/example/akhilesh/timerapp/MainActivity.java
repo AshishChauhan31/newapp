@@ -15,8 +15,10 @@ import java.util.Timer;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView;
+    Boolean running = false;
     Button button;
-    public int counter;
+    private int Counter;
+
     private MediaPlayer mediaPlayer;
     Button button2;
     @Override
@@ -26,35 +28,38 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById (R.id.textView);
         button = findViewById (R.id.button);
         button2 = findViewById (R.id.button2);
+         final MediaPlayer mediaPlayer= MediaPlayer.create(MainActivity.this , R.raw.abc);
 
 //       mediaPlayer = MediaPlayer.create (this,R.raw.a);
         button.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
 
-                new CountDownTimer(1000,10) {
+                new CountDownTimer(600,60) {
                     public void onTick(long millisUntilFinished) {
 
-                        textView.setText (String.valueOf (counter));
-                        counter++;
+                        textView.setText (String.valueOf (Counter));
+                        Counter++;
                         //Toast.makeText (MainActivity.this, "after time song starting", Toast.LENGTH_SHORT).show ();
+
                     }
 
                     public void onFinish() {
-                        MediaPlayer mediaPlayer= MediaPlayer.create(MainActivity.this , R.raw.abc);
+
 //                        mediaPlayer = MediaPlayer.create(null, R.raw.a);
-                        try {
-                            mediaPlayer.prepare();
-                        } catch (IllegalStateException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            mediaPlayer.prepare();
+//                        } catch (IllegalStateException e) {
+//                            // TODO Auto-generated catch block
+//                            e.printStackTrace();
+//                        } catch (IOException e) {
+//                            // TODO Auto-generated catch block
+//                            e.printStackTrace();
+//                        }
 
                         textView.setText ("hi!");
                         mediaPlayer.start ();
+
                     }
                 }.start ();
             }
@@ -62,9 +67,10 @@ public class MainActivity extends AppCompatActivity {
 
         button2.setOnClickListener (new View.OnClickListener () {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view){
                 //Toast.makeText (MainActivity.this, "after stop timer", Toast.LENGTH_SHORT).show ();
                 mediaPlayer.stop ();
+
             }
 
         });
